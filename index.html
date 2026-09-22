@@ -14,20 +14,25 @@
     box-sizing: border-box;
 }
 
+html {
+    min-height: 100%;
+}
+
 body {
     min-height: 100vh;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
     background:
         radial-gradient(circle at top left, #ffe0ec, transparent 35%),
         radial-gradient(circle at bottom right, #dff7ff, transparent 35%),
         linear-gradient(135deg, #fff5f8, #ffe4ef);
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    overflow: hidden;
     color: #4b2636;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Main container */
@@ -35,17 +40,19 @@ body {
 .container {
     width: 92%;
     max-width: 430px;
+
+    margin: 40px auto 60px;
+
     text-align: center;
 
     position: relative;
     z-index: 5;
 }
 
-/* Birthday Card */
+/* Card */
 
 .card {
-
-    background: rgba(255,255,255,0.78);
+    background: rgba(255,255,255,0.82);
 
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
@@ -62,58 +69,55 @@ body {
     animation: cardAppear 1s ease;
 }
 
-/* Gift / Cake */
+/* Birthday emoji */
 
 .emoji {
-
     font-size: 58px;
 
     animation: floating 2.5s infinite ease-in-out;
 
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
-/* Main heading */
+/* Heading */
 
 h1 {
-
     font-size: 38px;
+
+    line-height: 1.15;
 
     color: #e75480;
 
-    margin-bottom: 8px;
-
-    letter-spacing: -1px;
+    margin-bottom: 12px;
 }
 
-/* Second heading */
+/* Subheading */
 
 h2 {
-
     font-size: 22px;
+
+    line-height: 1.4;
 
     color: #5d3547;
 
-    margin-bottom: 18px;
+    margin-bottom: 22px;
 }
 
 /* Message */
 
 .message {
-
     font-size: 16px;
 
-    line-height: 1.75;
+    line-height: 1.8;
 
     color: #684655;
 
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 
 /* Button */
 
 button {
-
     border: none;
 
     padding: 15px 28px;
@@ -138,19 +142,10 @@ button {
     box-shadow:
         0 10px 28px rgba(255,95,158,0.35);
 
-    transition: all 0.25s ease;
-}
-
-button:hover {
-
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 15px 35px rgba(255,95,158,0.45);
+    transition: 0.25s;
 }
 
 button:active {
-
     transform: scale(0.94);
 }
 
@@ -160,28 +155,25 @@ button:active {
     display: none;
 }
 
-/* Surprise animation */
+/* Surprise */
 
 .surprise {
-
     animation: surpriseAppear 1s ease;
 }
 
 /* Footer */
 
 .small {
-
     font-size: 13px;
 
     color: #a56b82;
 
-    margin-top: 22px;
+    margin-top: 25px;
 }
 
-/* Floating hearts */
+/* Hearts */
 
 .heart {
-
     position: fixed;
 
     bottom: -40px;
@@ -192,31 +184,30 @@ button:active {
 
     z-index: 2;
 
-    animation:
-        heartRise 5s linear forwards;
+    animation: heartRise 5s linear forwards;
 }
 
 /* Confetti */
 
 .confetti {
-
     position: fixed;
 
     width: 8px;
-
     height: 14px;
 
     top: -20px;
 
     border-radius: 2px;
 
-    animation:
-        confettiFall 4s linear forwards;
+    animation: confettiFall 4s linear forwards;
 
     z-index: 10;
 }
 
-/* Animations */
+
+/* ========================= */
+/* ANIMATIONS */
+/* ========================= */
 
 @keyframes floating {
 
@@ -246,7 +237,7 @@ button:active {
 
     from {
         opacity: 0;
-        transform: scale(0.7);
+        transform: scale(0.8);
     }
 
     to {
@@ -293,6 +284,39 @@ button:active {
     }
 }
 
+
+/* ========================= */
+/* IPHONE SMALL SCREEN */
+/* ========================= */
+
+@media (max-width: 380px) {
+
+    .container {
+        width: 94%;
+
+        margin-top: 25px;
+        margin-bottom: 50px;
+    }
+
+    .card {
+        padding: 32px 20px;
+    }
+
+    h1 {
+        font-size: 32px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .message {
+        font-size: 15px;
+        line-height: 1.75;
+    }
+
+}
+
 </style>
 
 </head>
@@ -304,9 +328,9 @@ button:active {
 <div class="container">
 
 
-    <!-- ========================= -->
+    <!-- ====================== -->
     <!-- FIRST SCREEN -->
-    <!-- ========================= -->
+    <!-- ====================== -->
 
     <div class="card" id="start">
 
@@ -329,7 +353,7 @@ button:active {
 
             <br>
 
-            promise me you'll smile. 😌💕
+            Promise me you'll smile. 😌💕
 
         </p>
 
@@ -343,24 +367,33 @@ button:active {
 
 
 
-    <!-- ========================= -->
+    <!-- ====================== -->
     <!-- BIRTHDAY SCREEN -->
-    <!-- ========================= -->
+    <!-- ====================== -->
 
-    <div class="card hidden" id="birthday">
+    <div
+        class="card hidden"
+        id="birthday"
+    >
 
         <div class="emoji">
             🎂
         </div>
 
+
         <h1>
+
             Happy Birthday,
             <br>
             Laado! ❤️
+
         </h1>
 
+
         <h2>
+
             My Beautiful Sister 💕
+
         </h2>
 
 
@@ -368,7 +401,7 @@ button:active {
 
             Today isn't just another day...
 
-            <br>
+            <br><br>
 
             It's the day my special
             <strong>Laado</strong>
@@ -412,6 +445,18 @@ button:active {
 
             <br><br>
 
+            May every dream you have
+            slowly become a beautiful reality.
+
+            <br><br>
+
+            And whenever you feel like
+            the world is getting difficult,
+            remember that your brother
+            will always be cheering for you. ❤️
+
+            <br><br>
+
             <strong>
                 Happy Birthday once again,
                 Laado! 🎂❤️
@@ -439,6 +484,7 @@ button:active {
 
     </div>
 
+
 </div>
 
 
@@ -446,13 +492,14 @@ button:active {
 <script>
 
 
-/* ============================= */
-/* OPEN BIRTHDAY SURPRISE */
-/* ============================= */
+/* ========================= */
+/* OPEN BIRTHDAY */
+/* ========================= */
 
 function showBirthday() {
 
-    document.getElementById("start").style.display = "none";
+    document.getElementById("start").style.display =
+        "none";
 
     const birthday =
         document.getElementById("birthday");
@@ -467,16 +514,14 @@ function showBirthday() {
 
 
 
-/* ============================= */
+/* ========================= */
 /* CELEBRATION */
-/* ============================= */
+/* ========================= */
 
 function celebrate() {
 
 
-    /* ------------------------- */
     /* CONFETTI */
-    /* ------------------------- */
 
     for (let i = 0; i < 100; i++) {
 
@@ -488,14 +533,12 @@ function celebrate() {
 
 
         const colors = [
-
             "#ff5f9e",
             "#ffd166",
             "#06d6a0",
             "#4dabf7",
             "#c77dff",
             "#ff8fab"
-
         ];
 
 
@@ -535,29 +578,24 @@ function celebrate() {
 
 
 
-    /* ------------------------- */
     /* FLOATING HEARTS */
-    /* ------------------------- */
 
     for (let i = 0; i < 30; i++) {
 
         const heart =
             document.createElement("div");
 
-
         heart.className =
             "heart";
 
 
         const hearts = [
-
             "❤️",
             "💕",
             "💖",
             "💗",
             "💓",
             "💞"
-
         ];
 
 
@@ -600,7 +638,6 @@ function celebrate() {
     }
 
 }
-
 
 </script>
 
